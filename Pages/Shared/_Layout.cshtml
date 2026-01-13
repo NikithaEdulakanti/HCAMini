@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HCAMiniEHR</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    <!-- MODERN NAVBAR -->
+    <nav class="modern-navbar">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" asp-page="/Index">
+                <span class="brand-icon">🏥</span>
+                <span class="brand-text">HCAMiniEHR</span>
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Index">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Patients/Index">
+                            <span class="nav-icon">👥</span>
+                            <span>Patients</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Appointments/Index">
+                            <span class="nav-icon">📅</span>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/LabOrders/Index">
+                            <span class="nav-icon">🧪</span>
+                            <span>Lab Orders</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#"
+                           role="button" data-bs-toggle="dropdown">
+                            <span class="nav-icon">📈</span>
+                            <span>Reports</span>
+                        </a>
+                        <ul class="dropdown-menu modern-dropdown">
+                            <li>
+                                <a class="dropdown-item" asp-page="/Reports/Index">
+                                    <span class="dropdown-icon">📋</span>
+                                    Reports Dashboard
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-page="/Reports/PendingLabOrders">
+                                    <span class="dropdown-icon">⏳</span>
+                                    Pending Lab Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-page="/Reports/PatientsWithoutFollowUp">
+                                    <span class="dropdown-icon">⚠️</span>
+                                    Patients Without Follow-Up
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-page="/Reports/DoctorProductivity">
+                                    <span class="dropdown-icon">👨‍⚕️</span>
+                                    Doctor Productivity
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-icon">🏥</span>
+                    <span class="brand-text">HCAMiniEHR</span>
+                </div>
+                <div class="footer-text">
+                    © 2026 HCAMiniEHR. Healthcare Management System
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

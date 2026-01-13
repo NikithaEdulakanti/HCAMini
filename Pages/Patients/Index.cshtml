@@ -1,0 +1,56 @@
+﻿@page
+@model HCAMiniEHR.Pages.Patients.IndexModel
+
+<div class="mb-4">
+    <a asp-page="/Index" class="action-btn action-btn-primary">
+        ← Back to Dashboard
+    </a>
+</div>
+
+<div class="page-header">
+    <h1 class="page-title">Patients</h1>
+    <p class="page-subtitle">Manage patient records and information</p>
+</div>
+
+<div class="mb-4">
+    <a asp-page="Create" class="btn-modern btn-gradient-primary">
+        ➕ Add New Patient
+    </a>
+</div>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model.Patients)
+        {
+            <tr>
+                <td><strong>@patient.FullName</strong></td>
+                <td>@patient.Gender</td>
+                <td>@(patient.DateOfBirth?.ToString("dd-MMM-yyyy") ?? "N/A")</td>
+                <td>
+                    <div class="action-buttons">
+                        <a asp-page="Edit" asp-route-id="@patient.PatientId" class="action-btn action-btn-warning">
+                            ✏️ Edit
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@patient.PatientId" class="action-btn action-btn-danger">
+                            🗑️ Delete
+                        </a>
+                        <a asp-page="/Appointments/Index"
+                           asp-route-patientId="@patient.PatientId"
+                           class="action-btn action-btn-info">
+                            📅 Appointments
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,28 @@
+﻿@page
+@model HCAMiniEHR.Pages.Reports.PatientsWithoutFollowUpModel
+
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Patients Without Follow-Up</h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Total Appointments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Patients)
+                {
+                    <tr>
+                        <td>@p.PatientName</td>
+                        <td>@p.TotalAppointments</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

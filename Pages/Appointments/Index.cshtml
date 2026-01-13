@@ -1,0 +1,70 @@
+﻿@page
+@model HCAMiniEHR.Pages.Appointments.IndexModel
+
+<div class="page-header">
+    <h1 class="page-title">Appointments</h1>
+    @if (Model.PatientName != null)
+    {
+        <p class="page-subtitle">Viewing appointments for <strong>@Model.PatientName</strong></p>
+    }
+    else
+    {
+        <p class="page-subtitle">Manage all scheduled appointments</p>
+    }
+</div>
+
+<table class="modern-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+
+            @if (Model.PatientId == null)
+            {
+                <th>Patient</th>
+            }
+
+            <th>Doctor</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Lab Orders</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var a in Model.Appointments)
+        {
+            <tr>
+                <td><strong>@a.AppointmentDate.ToString("dd-MMM-yyyy")</strong></td>
+
+                @if (Model.PatientId == null)
+                {
+                    <td>@a.PatientName</td>
+                }
+
+                <td>@a.DoctorName</td>
+                <td>@a.Reason</td>
+                <td>
+                    <span class="badge" style="background: var(--gradient-info);">@a.Status</span>
+                </td>
+
+                <td>
+                    <a asp-page="/LabOrders/Index"
+                       asp-route-patientId="@a.PatientId"
+                       class="action-btn action-btn-info">
+                        🧪 View Labs
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.PatientId != null)
+{
+    <div class="mt-4">
+        <a asp-page="/Patients/Index" class="action-btn action-btn-primary">
+            ← Back to Patients
+        </a>
+    </div>
+}
+

@@ -1,0 +1,44 @@
+﻿@page
+
+<div class="page-header">
+    <h1 class="page-title">Reports Dashboard</h1>
+    <p class="page-subtitle">Access comprehensive analytics and insights</p>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="stat-card gradient-info">
+            <div class="stat-card-icon">⏳</div>
+            <div class="stat-card-title">Pending Lab Orders</div>
+            <p style="opacity: 0.9; margin-bottom: 1.5rem;">View all lab tests that are still pending processing</p>
+            <a href="/Reports/PendingLabOrders" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                View Report →
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card gradient-warning">
+            <div class="stat-card-icon">⚠️</div>
+            <div class="stat-card-title">Patients Without Follow-Up</div>
+            <p style="opacity: 0.9; margin-bottom: 1.5rem;">Patients who have no upcoming appointments scheduled</p>
+            <a href="/Reports/PatientsWithoutFollowUp" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                View Report →
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card gradient-primary">
+            <div class="stat-card-icon">👨‍⚕️</div>
+            <div class="stat-card-title">Doctor Productivity</div>
+            <p style="opacity: 0.9; margin-bottom: 1.5rem;">Analyze appointment load and productivity per doctor</p>
+            <a href="/Reports/DoctorProductivity" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                View Report →
+            </a>
+        </div>
+    </div>
+
+</div>
+

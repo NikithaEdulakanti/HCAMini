@@ -1,0 +1,39 @@
+﻿@page
+@model HCAMiniEHR.Pages.LabOrders.CreateModel
+
+<h2>Create Lab Order</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Appointment</label>
+        <select asp-for="LabOrder.AppointmentId"
+                asp-items="Model.AppointmentList"
+                class="form-select">
+
+            <option value="">-- Select Appointment --</option>
+        </select>
+        <span asp-validation-for="LabOrder.AppointmentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Test Name</label>
+        <input asp-for="LabOrder.TestName" class="form-control" />
+        <span asp-validation-for="LabOrder.TestName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select asp-for="LabOrder.Status" class="form-select">
+            <option>Pending</option>
+            <option>Ordered</option>
+            <option>Completed</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

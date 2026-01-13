@@ -1,0 +1,49 @@
+﻿@page
+@model HCAMiniEHR.Pages.Appointments.CreateModel
+
+<h2>Create Appointment</h2>
+
+<div class="card p-4">
+    <div class="mb-3">
+        <strong>Patient:</strong> @Model.Patient!.FullName
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="Appointment.PatientId" />
+
+        <div class="mb-3">
+            <label class="form-label">Doctor</label>
+            <select asp-for="Appointment.DoctorId"
+                    asp-items="Model.Doctors"
+                    class="form-select">
+                <option value="">-- Select Doctor --</option>
+            </select>
+            <span asp-validation-for="Appointment.DoctorId"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input asp-for="Appointment.AppointmentDate"
+                   type="date"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Reason</label>
+            <input asp-for="Appointment.Reason"
+                   class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-page="/Appointments/Index"
+           asp-route-patientId="@Model.Appointment.PatientId"
+           class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

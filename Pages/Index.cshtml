@@ -1,0 +1,86 @@
+﻿@page
+@model HCAMiniEHR.Pages.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Healthcare Management Dashboard</h1>
+    <p class="page-subtitle">Welcome to your comprehensive EHR system</p>
+</div>
+
+<div class="row g-4 mb-5">
+
+    <!-- Patients Card -->
+    <div class="col-md-4">
+        <div class="stat-card gradient-primary">
+            <div class="stat-card-icon">👥</div>
+            <div class="stat-card-title">Total Patients</div>
+            <div class="stat-card-value">@Model.TotalPatients</div>
+            <div class="stat-card-label">Registered in system</div>
+            <a asp-page="/Patients/Index" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                Manage Patients →
+            </a>
+        </div>
+    </div>
+
+    <!-- Appointments Card -->
+    <div class="col-md-4">
+        <div class="stat-card gradient-success">
+            <div class="stat-card-icon">📅</div>
+            <div class="stat-card-title">Appointments</div>
+            <div class="stat-card-value">@Model.TotalAppointments</div>
+            <div class="stat-card-label">Scheduled appointments</div>
+            <a asp-page="/Appointments/Index" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                View Calendar →
+            </a>
+        </div>
+    </div>
+
+    <!-- Lab Orders Card -->
+    <div class="col-md-4">
+        <div class="stat-card gradient-warning">
+            <div class="stat-card-icon">🧪</div>
+            <div class="stat-card-title">Pending Labs</div>
+            <div class="stat-card-value">@Model.PendingLabOrders</div>
+            <div class="stat-card-label">Awaiting processing</div>
+            <a asp-page="/LabOrders/Index" class="btn-modern btn-outline-modern" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">
+                View Orders →
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Quick Actions Section -->
+<div class="page-header mt-5">
+    <h2 class="gradient-text" style="font-size: 2rem; font-weight: 700;">Quick Actions</h2>
+    <p class="page-subtitle">Streamline your workflow with one-click access</p>
+</div>
+
+<div class="quick-actions">
+   
+    <a asp-page="/Patients/Create" class="quick-action-card">
+        <div class="quick-action-icon">➕</div>
+        <div class="quick-action-title">Add New Patient</div>
+    </a>
+
+    <a asp-page="/Appointments/Create"
+       asp-route-patientId="1"
+       class="quick-action-card">
+        <div class="quick-action-icon">📆</div>
+        <div class="quick-action-title">Schedule Appointment</div>
+    </a>
+
+    <a asp-page="/LabOrders/Create" class="quick-action-card">
+        <div class="quick-action-icon">🔬</div>
+        <div class="quick-action-title">Create Lab Order</div>
+    </a>
+
+    <a asp-page="/Reports/Index" class="quick-action-card">
+        <div class="quick-action-icon">📊</div>
+        <div class="quick-action-title">View Reports</div>
+    </a>
+
+</div>
+

@@ -1,0 +1,36 @@
+﻿@page
+@model HCAMiniEHR.Pages.Reports.PendingLabOrdersModel
+
+<div class="card shadow-sm">
+    <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0">Pending Lab Orders</h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Patient</th>
+                    <th>Test</th>
+                    <th>Ordered On</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PendingLabOrders)
+                {
+                    <tr>
+                        <td>@item.PatientName</td>
+                        <td>@item.TestName</td>
+                        <td>@item.OrderedAt.ToString("dd-MMM-yyyy")</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                @item.Status
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

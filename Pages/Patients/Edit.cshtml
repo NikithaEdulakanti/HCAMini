@@ -1,0 +1,54 @@
+﻿@page "{id:int}"
+@model HCAMiniEHR.Pages.Patients.EditModel
+
+<div class="page-header">
+    <h1 class="page-title">Edit Patient</h1>
+    <p class="page-subtitle">Update patient information</p>
+</div>
+
+<div class="modern-form">
+    <form method="post">
+        <input type="hidden" asp-for="Patient.PatientId" />
+
+        <div class="form-group">
+            <label asp-for="Patient.FullName" class="form-label">Full Name</label>
+            <input asp-for="Patient.FullName" class="form-control" placeholder="Enter patient's full name" />
+            <span asp-validation-for="Patient.FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Patient.Gender" class="form-label">Gender</label>
+            <select asp-for="Patient.Gender" class="form-select">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+            <span asp-validation-for="Patient.Gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Patient.DateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="Patient.DateOfBirth"
+                   type="date"
+                   class="form-control"
+                   min="1900-01-01"
+                   max="@DateTime.Today.ToString("yyyy-MM-dd")"
+                   required />
+            <span asp-validation-for="Patient.DateOfBirth" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4" style="display: flex; gap: 1rem;">
+            <button type="submit" class="btn-modern btn-gradient-success">
+                ✓ Update Patient
+            </button>
+            <a asp-page="Index" class="action-btn action-btn-primary">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,52 @@
+﻿@page
+@model HCAMiniEHR.Pages.LabOrders.IndexModel
+
+<h2>Lab Orders</h2>
+
+@if (Model.PatientId != null)
+{
+    <h5 class="text-muted">
+        Showing lab orders for <strong>@Model.PatientName</strong>
+    </h5>
+
+    <a asp-page="/Appointments/Index"
+       asp-route-patientId="@Model.PatientId"
+       class="btn btn-secondary mb-3">
+        ← Back to Appointments
+    </a>
+}
+else
+{
+    <a asp-page="Create" class="btn btn-primary mb-3">
+        Add Lab Order
+    </a>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Test Name</th>
+            <th>Status</th>
+            <th>Appointment</th>
+            <th>Patient</th>
+            <th>Ordered At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LabOrders)
+        {
+            <tr>
+                <td>@item.TestName</td>
+                <td>
+                    <span class="badge bg-@(item.Status == "Completed" ? "success" :
+                                                                       item.Status == "Pending" ? "warning" : "secondary")">
+                        @item.Status
+                    </span>
+                </td>
+                <td>#@item.AppointmentId</td>
+                <td>@item.Appointment.Patient.FullName</td>
+                <td>@item.OrderedAt.ToString("dd-MMM-yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+﻿@page
+@model HCAMiniEHR.Pages.Reports.DoctorProductivityModel
+
+<div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Doctor Productivity</h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Doctor</th>
+                    <th>Total Appointments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model.Report)
+                {
+                    <tr>
+                        <td>@d.DoctorName</td>
+                        <td>
+                            <span class="badge bg-success">
+                                @d.TotalAppointments
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
