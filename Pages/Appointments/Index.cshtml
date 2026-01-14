@@ -48,6 +48,12 @@
                 </td>
 
                 <td>
+                    <a asp-page="/LabOrders/Create"
+                       asp-route-appointmentId="@a.AppointmentId"
+                       class="action-btn action-btn-secondary"
+                       style="margin-right: 5px;">
+                        + Lab
+                    </a>
                     <a asp-page="/LabOrders/Index"
                        asp-route-patientId="@a.PatientId"
                        class="action-btn action-btn-info">

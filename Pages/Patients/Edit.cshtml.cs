@@ -16,7 +16,7 @@ namespace HCAMiniEHR.Pages.Patients
         }
 
         [BindProperty]
-        public Patient Patient { get; set; } = new();
+        public Patient? Patient { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -33,7 +33,7 @@ namespace HCAMiniEHR.Pages.Patients
             if (!ModelState.IsValid)
                 return Page();
 
-            _context.Attach(Patient).State = EntityState.Modified;
+            _context.Attach(Patient!).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");

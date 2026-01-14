@@ -20,6 +20,9 @@ else
     <a asp-page="Create" class="btn btn-primary mb-3">
         Add Lab Order
     </a>
+    <a asp-page="/Index" class="btn btn-secondary mb-3">
+        Back to Dashboard
+    </a>
 }
 
 <table class="table table-bordered table-striped">
@@ -30,6 +33,7 @@ else
             <th>Appointment</th>
             <th>Patient</th>
             <th>Ordered At</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +50,9 @@ else
                 <td>#@item.AppointmentId</td>
                 <td>@item.Appointment.Patient.FullName</td>
                 <td>@item.OrderedAt.ToString("dd-MMM-yyyy")</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.LabOrderId" class="btn btn-sm btn-primary">Edit</a>
+                </td>
             </tr>
         }
     </tbody>

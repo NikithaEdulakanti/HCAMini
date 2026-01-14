@@ -1,0 +1,60 @@
+@page
+@model HCAMiniEHR.Pages.LabOrders.EditModel
+
+<h2>Edit Lab Order</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="LabOrder.LabOrderId" />
+    <input type="hidden" asp-for="LabOrder.AppointmentId" />
+
+    <div class="mb-3">
+        <label class="form-label">Appointment</label>
+        <!-- Read-only display -->
+        <input class="form-control" value="#@Model.LabOrder.AppointmentId - @Model.LabOrder.Appointment.Patient.FullName" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Test Name</label>
+        @if (Model.IsCompleted)
+        {
+            <input asp-for="LabOrder.TestName" class="form-control" readonly />
+            <small class="text-muted">Cannot change test name after completion.</small>
+        }
+        else
+        {
+            <input asp-for="LabOrder.TestName" class="form-control" />
+        }
+        <span asp-validation-for="LabOrder.TestName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        @if (Model.IsCompleted)
+        {
+            <input class="form-control" value="Completed" readonly />
+            <input type="hidden" asp-for="LabOrder.Status" />
+            <div class="alert alert-info mt-2">Results are finalized. Status cannot be changed.</div>
+        }
+        else
+        {
+            <select asp-for="LabOrder.Status" class="form-select">
+                <option>Pending</option>
+                <option>Ordered</option>
+                <option>Completed</option>
+            </select>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ordered At</label>
+        <input asp-for="LabOrder.OrderedAt" class="form-control" readonly />
+    </div>
+
+    <button type="submit" class="btn btn-primary" @(Model.IsCompleted ? "disabled" : "")>Save Changes</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

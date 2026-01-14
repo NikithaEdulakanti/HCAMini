@@ -4,12 +4,20 @@
 <h2>Create Appointment</h2>
 
 <div class="card p-4">
-    <div class="mb-3">
-        <strong>Patient:</strong> @Model.Patient!.FullName
-    </div>
+
 
     <form method="post">
-        <input type="hidden" asp-for="Appointment.PatientId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        
+        <div class="mb-3">
+            <label class="form-label">Patient</label>
+            <select asp-for="Appointment.PatientId"
+                    asp-items="Model.Patients"
+                    class="form-select">
+                <option value="">-- Select Patient --</option>
+            </select>
+            <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+        </div>
 
         <div class="mb-3">
             <label class="form-label">Doctor</label>
@@ -26,18 +34,28 @@
             <label class="form-label">Date</label>
             <input asp-for="Appointment.AppointmentDate"
                    type="date"
+                   min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"
                    class="form-control" />
+                   <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Time</label>
+            <input asp-for="Appointment.AppointmentTime"
+                   type="time"
+                   class="form-control" />
+            <span asp-validation-for="Appointment.AppointmentTime" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Reason</label>
             <input asp-for="Appointment.Reason"
                    class="form-control" />
+            <span asp-validation-for="Appointment.Reason" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-success">Save</button>
-        <a asp-page="/Appointments/Index"
-           asp-route-patientId="@Model.Appointment.PatientId"
+        <a asp-page="/Index"
            class="btn btn-secondary">
             Cancel
         </a>

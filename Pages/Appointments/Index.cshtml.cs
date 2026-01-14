@@ -46,7 +46,7 @@ namespace HCAMiniEHR.Pages.Appointments
                     DoctorName = a.Doctor.FullName,
                     PatientName = a.Patient.FullName,
                     PatientId = a.PatientId,
-                    Reason = a.Reason,
+                    Reason = a.Reason ?? "",
                     Status = a.Status
                 })
                 .ToListAsync();

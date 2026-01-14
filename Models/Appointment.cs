@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HCAMiniEHR.Validation;
 
 namespace HCAMiniEHR.Models
 {
@@ -18,7 +19,14 @@ namespace HCAMiniEHR.Models
         public int DoctorId { get; set; }
 
         [Required]
+        [AppointmentDateValidation]
+        [Display(Name = "Appointment Date")]
         public DateTime AppointmentDate { get; set; }
+
+        [Required]
+        [Display(Name = "Appointment Time")]
+        [NotMapped]
+        public TimeSpan AppointmentTime { get; set; }
 
         [StringLength(200)]
         public string? Reason { get; set; }

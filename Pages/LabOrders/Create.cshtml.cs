@@ -26,8 +26,13 @@ namespace HCAMiniEHR.Pages.LabOrders
         // =========================
         // GET
         // =========================
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? appointmentId)
         {
+            if (appointmentId.HasValue)
+            {
+                LabOrder.AppointmentId = appointmentId.Value;
+            }
+
             await LoadAppointmentsAsync();
             return Page();
         }
@@ -41,9 +46,11 @@ namespace HCAMiniEHR.Pages.LabOrders
 
             await LoadAppointmentsAsync();
 
+            // Fix: Ignore navigation property validation
+            ModelState.Remove("LabOrder.Appointment");
+
             if (!ModelState.IsValid)
             {
-                Console.WriteLine(" ModelState INVALID");
 
                 foreach (var error in ModelState)
                 {

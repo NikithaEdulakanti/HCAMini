@@ -6,10 +6,13 @@ namespace HCAMiniEHR.Models
     public class Patient
     {
         public int PatientId { get; set; }
+        [Required]
+        [MaxLength(100)]
 
+        [RegularExpression("^[a-zA-Z]+$",ErrorMessage = "Name can contain letters.")]
         public string FullName { get; set; } = string.Empty;
 
-        public string Gender { get; set; }
+        public string Gender { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Date of Birth is required")]
         [DataType(DataType.Date)]
@@ -35,6 +38,8 @@ namespace HCAMiniEHR.Models
             return ValidationResult.Success;
         }
 
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", 
+            ErrorMessage = "Phone number must be in valid format (e.g., 123-456-7890, (123) 456-7890, or 1234567890)")]
         public string? Phone { get; set; }
 
         public string? Email { get; set; }
